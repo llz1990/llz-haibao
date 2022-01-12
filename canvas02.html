@@ -1,3 +1,4 @@
+<!-- 原生canvas实现前端海报生成 -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,47 +60,47 @@
         cxt.drawImage(img, 0, 0, clientWidth, clientHeight);
 
         // 绘制文字部分显示：
-        // cxt.fillStyle = "#ffffff";
-        // cxt.font = "14px bold 黑体";
-        // const str = "打开爱奇艺app,扫码领取积分,赢取豪华大礼，惊喜等着你~"
-        // cxt.textBaseline = "middle";
-        // cxt.textAlign = "left";
-        // let lineWidth = 0;
-        // let txtlimitWidth = 240; // 一行文字占用的宽度
-        // let initHeight = clientHeight - 50; // 绘制字体距离canvas顶部初始的高度
-        // let lastSubStrIndex = 0; // 每次开始截取的字符串的索引
+        cxt.fillStyle = "#ffffff";
+        cxt.font = "14px bold 黑体";
+        const str = "打开爱奇艺app,扫码领取积分,赢取豪华大礼，惊喜等着你~"
+        cxt.textBaseline = "middle";
+        cxt.textAlign = "left";
+        let lineWidth = 0;
+        let txtlimitWidth = 240; // 一行文字占用的宽度
+        let initHeight = clientHeight - 50; // 绘制字体距离canvas顶部初始的高度
+        let lastSubStrIndex = 0; // 每次开始截取的字符串的索引
 
         // 绘制文字的时候，如果当绘制的长度超出文字限制长度 txtlimitWidth, 就转行
-        // for (let i = 0; i < str.length; i++) {
-        //     lineWidth += cxt.measureText(str[i]).width;
-        //     if (lineWidth > txtlimitWidth) {
-        //         cxt.fillText(str.substring(lastSubStrIndex, i), 20, initHeight); // 绘制截取部分
-        //         initHeight += 20; // 20为字体的高度
-        //         lineWidth = 0;
-        //         lastSubStrIndex = i;
-        //     }
-        //     if (i == str.length - 1) { // 绘制剩余部分
-        //         cxt.fillText(str.substring(lastSubStrIndex, i + 1), 20, initHeight);
-        //     }
-        // }
+        for (let i = 0; i < str.length; i++) {
+            lineWidth += cxt.measureText(str[i]).width;
+            if (lineWidth > txtlimitWidth) {
+                cxt.fillText(str.substring(lastSubStrIndex, i), 20, initHeight); // 绘制截取部分
+                initHeight += 20; // 20为字体的高度
+                lineWidth = 0;
+                lastSubStrIndex = i;
+            }
+            if (i == str.length - 1) { // 绘制剩余部分
+                cxt.fillText(str.substring(lastSubStrIndex, i + 1), 20, initHeight);
+            }
+        }
 
         // 绘制二维码
-        // var qrcode = new Image()
-        // qrcode.crossOrigin = "anonymous";
-        // qrcode.src = "./imgs/qrcode.png" // 二维码图片路径
-        // qrcode.onload = () => {
-        //     cxt.drawImage(qrcode, 300, clientHeight - 60, 50, 50);
+        var qrcode = new Image()
+        qrcode.crossOrigin = "anonymous";
+        qrcode.src = "./imgs/qrcode.png" // 二维码图片路径
+        qrcode.onload = () => {
+            cxt.drawImage(qrcode, 300, clientHeight - 60, 50, 50);
 
-        //     // 绘制特殊部位展示图
-        //     var lightImg = new Image()
-        //     lightImg.crossOrigin = "anonymous";
-        //     lightImg.src = "./imgs/imgdemo05.png" // 特殊部位展示图路径
-        //     lightImg.onload = () => {
-        //         cxt.drawImage(lightImg, 210, 52, 72, 101);
-        //         let _imgSrc = canvas.toDataURL("image/png", 1);
-        //         console.log('_imgSrc =============', _imgSrc);
-        //     }
-        // }
+            // 绘制特殊部位展示图
+            var lightImg = new Image()
+            lightImg.crossOrigin = "anonymous";
+            lightImg.src = "./imgs/imgdemo05.png" // 特殊部位展示图路径
+            lightImg.onload = () => {
+                cxt.drawImage(lightImg, 210, 52, 72, 101);
+                let _imgSrc = canvas.toDataURL("image/png", 1);
+                console.log('_imgSrc =============', _imgSrc);
+            }
+        }
     }
 </script>
 

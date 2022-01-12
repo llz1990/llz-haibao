@@ -1,0 +1,92 @@
+<!-- 通过 html2canvas 实现 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./js/html2canvas.min.js"></script>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="./imgs/share.png" alt="">
+        </div>
+        <span class="desc">打开爱奇艺app,扫码领取积分,赢取豪华大礼，惊喜等着你~</span>
+        <img class="code-img" src="./imgs/qrcode.png" alt="">
+        <img class="hug-img" src="./imgs/imgdemo05.png" alt="">
+    </div>
+</body>
+
+<script>
+    html2canvas(document.querySelector(".container")).then(canvas => {
+        let _imgSrc = canvas.toDataURL("image/png", 1);
+        console.log('_imgSrc =============', _imgSrc);
+    });
+</script>
+
+<style>
+    html {
+        height: 100%;
+        width: 100%;
+    }
+
+    body {
+        margin: 0 auto;
+        height: 100%;
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        background-image: url('./imgs/imgdemo04.jpeg');
+        background-size: 100% 100%;
+    }
+
+    .header {
+        top: 0;
+        position: fixed;
+        height: 44px;
+        width: 100%;
+    }
+
+    .header img {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .desc {
+        position: absolute;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffffff;
+        bottom: 30px;
+        width: 240px;
+        left: 20px;
+    }
+
+    .code-img {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 50px;
+    }
+
+    .hug-img {
+        position: absolute;
+        width: 72px;
+        height: 102px;
+        left: 200px;
+        top: 50px;
+    }
+</style>
+
+</html>
